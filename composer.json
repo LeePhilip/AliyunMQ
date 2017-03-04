@@ -1,0 +1,19 @@
+{
+    "name": "phillee/aliyunmq",
+    "description": "Aliyun MQ",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Phil",
+            "email": "lee_phil@163.com"
+        }
+    ],
+    "autoload": {
+        "psr-0" : {
+            "AliyunMQ\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}

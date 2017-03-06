@@ -20,13 +20,16 @@ class Producer
 	protected $accessSecret;
 	protected $id; // 生产者id
 
-	public function __construct($producerId, $topic, $url, $accessKey, $accessSecret)
+	public function __construct($producerId, $url, $accessKey, $accessSecret)
 	{
-		$this->topic = $topic;
 		$this->url = $url;
 		$this->accessKey = $accessKey;
 		$this->accessSecret = $accessSecret;
 		$this->id = $producerId;
+	}
+
+	public function setTopic($topic) {
+		$this->topic = $topic;
 	}
 
 	/**

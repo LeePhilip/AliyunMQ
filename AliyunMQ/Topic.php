@@ -12,7 +12,7 @@ use AliyunMQ\Traits\GetSetTrait;
  * Class Client
  * @package AliyunMQ
  */
-class Client
+class Topic
 {
 	use GetSetTrait;
 
@@ -34,7 +34,9 @@ class Client
 	 * @return Producer
 	 */
 	public function producer($producerId) {
-		return new Producer($producerId, $this->topic, $this->url, $this->accessKey, $this->accessSecret);
+		$producer = new Producer($producerId, $this->url, $this->accessKey, $this->accessSecret);
+		$producer->setTopic($this->topic);
+		return $producer;
 	}
 
 	/**
@@ -42,6 +44,8 @@ class Client
 	 * @return Consumer
 	 */
 	public function consumer($consumerId) {
-		return new Consumer($consumerId, $this->topic, $this->url, $this->accessKey, $this->accessSecret);
+		$consumer = new Consumer($consumerId, $this->url, $this->accessKey, $this->accessSecret);
+		$consumer->setTopic($this->topic);
+		return $consumer;
 	}
 }

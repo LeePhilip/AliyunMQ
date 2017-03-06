@@ -21,13 +21,16 @@ class Consumer
 	protected $accessSecret;
 
 
-	public function __construct($consumerId, $topic, $url, $accessKey, $accessSecret)
+	public function __construct($consumerId, $url, $accessKey, $accessSecret)
 	{
 		$this->id = $consumerId;
-		$this->topic = $topic;
 		$this->url = $url;
 		$this->accessKey = $accessKey;
 		$this->accessSecret = $accessSecret;
+	}
+
+	public function setTopic($topic) {
+		$this->topic = $topic;
 	}
 
 	/**

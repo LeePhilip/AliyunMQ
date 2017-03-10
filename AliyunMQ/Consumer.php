@@ -34,6 +34,7 @@ class Consumer
 	}
 
 	/**
+	 * @param int $num
 	 * @return MultiMessage
 	 */
 	public function receive($num) {
@@ -56,8 +57,11 @@ class Consumer
 		$messages = new MultiMessage();
 
 		foreach((array)$response as &$item) {
-			$msg = new Message();
+			if(empty($item) || empty($item['msgId'])) {
+				continue;
+			}
 
+			$msg = new Message();
 			$msg->id = $item['msgId'];
 			$msg->tag = $item['tag'];
 			$msg->key = $item['key'];

@@ -70,7 +70,7 @@ class Consumer
 			$msg->handle = $item['msgHandle'];
 			$msg->reconsumeTimes = $item['reconsumeTimes'];
 
-			if($callback && call_user_func($callback, [$msg]) == true) {
+			if($callback && call_user_func($callback, $msg) == true) {
 				$this->remove($msg);
 			}
 			else {

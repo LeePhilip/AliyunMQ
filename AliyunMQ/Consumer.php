@@ -35,9 +35,10 @@ class Consumer
 
 	/**
 	 * @param int $num
-	 * @return MultiMessage
+	 * @param \Closure $callback(Message $msg) return true则删除消息
+	 * @return MultiMessage 返回未处理的消息
 	 */
-	public function receive($num) {
+	public function receive($num, \Closure $callback = null) {
 		$date = time() * 1000;
 		//签名字符串
 		$signString = $this->topic."\n".$this->id."\n".$date;
@@ -52,7 +53,6 @@ class Consumer
 		//解析HTTP应答信息
 		$response = json_decode($result, true);
 		//如果应答信息中的没有包含任何的Topic信息,则直接跳过
-
 
 		$messages = new MultiMessage();
 
@@ -70,7 +70,12 @@ class Consumer
 			$msg->handle = $item['msgHandle'];
 			$msg->reconsumeTimes = $item['reconsumeTimes'];
 
-			$messages[] = $msg;
+			if($callback && call_user_func($callback, [$msg]) == true) {
+				$this->remove($msg);
+			}
+			else {
+				$messages[] = $msg;
+			}
 		}
 
 		return $messages;

@@ -18,4 +18,10 @@ class Message
 	public $handle;
 	public $bornTime;
 	public $reconsumeTimes;
+
+	public function __toString()
+	{
+		return '{id=' . $this->id . '|body=' . $this->body . '|tag=' . $this->tag . '|key=' . $this->key .
+			'|bornTime=' . $this->bornTime . '|reconsumeTimes=' . $this->reconsumeTimes . '}';
+	}
 }

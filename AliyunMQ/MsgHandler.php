@@ -17,13 +17,13 @@ abstract class MsgHandler
 {
 	/** @var Monolog\Logger */
 	protected $logger;
-	protected $logname = 'AliyunMq';
-	protected $logfile = 'aliyunmq.log';
+	protected $name = 'AliyunMq';
+	protected $file = 'aliyunmq.log';
 
 	public function __construct()
 	{
-		$this->logger = new Logger($this->logname, [
-			(new StreamHandler(storage_path('logs/' . $this->logfile)))->setFormatter(new LineFormatter(null, null, true, true))
+		$this->logger = new Logger($this->name, [
+			(new StreamHandler(storage_path('logs/' . $this->file)))->setFormatter(new LineFormatter(null, null, true, true))
 		]);
 	}
 

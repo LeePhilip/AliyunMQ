@@ -16,7 +16,7 @@ class MqServer
 	const SUCCESS = '{"status":0}';
 	const SUSPEND = '{"status":-1,"msg":"failed"}';
 
-	public static function handle(MsgHandler &$handler, Request &$request) {
+	public static function handle(MsgHandler $handler, Request &$request) {
 		$msg = new Message();
 		$msg->body = $request->getContent();
 		$msg->tag = $request->header('tag', '');

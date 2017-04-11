@@ -14,8 +14,9 @@
             "AliyunMQ\\": ""
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "1.2.1",
     "require": {
-        "illuminate/http": "~5.4"
+        "illuminate/http": "~5.4",
+        "monolog/monolog": "~1.11"
     }
 }
